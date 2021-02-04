@@ -1,26 +1,26 @@
-<!DOCTYPE html> 
-<script src="background.js" type="text/javascript"></script> 
-<script src="merged.js" type="text/javascript"></script>
+<!DOCTYPE html>
+<script src="popup.js"></script>
 <style type="text/css">
 body {
   width: 30em;
   height: 10em;
   position: relative;
-  vertical-align: middle;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+#submit {
+  position: relative;
+  margin-top: 10px;
 }
 </style>
-<body> 
-<h2>Select an image and Replace!</h2> 
-<form> 
-<select name="images" id="select_image"> 
-    <option value="image1" id="image_kitten">Kitten</option> 
-    <option value="image2" id="image_puppy">Puppy</option>  
-    <option value="image3" id="image_panda">Panda</option> 
-    <option value="image4" id="image_deer">Deer</option>  
-    <option value="image5" id="image_rabbit">Rabbit</option> 
-   </select>
-   <br />  
-   <button type="button" id="button_submit">Submit</button> 
-   <br> 
-  </form> 
- </body>
+<body>
+  <h2>Select an image and replace!</h2>
+  <form>
+    <input type="text">
+    <br>
+    <input type="submit" id="submit" value="Submit here">
+  </form>
+</body>
