@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name" : "Fun Times with 41",
+  "version": "1.0",
+  "description": "Replace all images of your choice with beautiful pictures of Codesmith LA cohort 41!",
+  "web_accessible_resources": [
+    "images/*.jpg",
+    "images/*.png",
+    "images/*.jpeg",
+    "images/*.gif"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["./main.js"]
+    }
+  ],
+  "browser_action": {
+    "default_icon": "./images/download.png",
+    "default_popup": "popup.html"
+  }
+}
