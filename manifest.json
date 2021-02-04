@@ -9,12 +9,6 @@
     "images/*.jpeg",
     "images/*.gif"
   ],
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["/popup.js"]
-    }
-  ],
   "browser_action": {
     "default_icon": "./images/download.png",
     "default_popup": "popup.html"
