@@ -40,8 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
         // var css = "html, body, div, table { background-color: pink; }";
         // var insertingCSS = browser.tabs.insertCSS(tabs[0].id, {code: css});
         
-        chrome.tabs.sendMessage(tabs[0].id, {"message": "open_new_tab"}, (response) => {
-          alert('Success');
+        chrome.tabs.sendMessage(tabs[0].id, {"message": "replace-photos"}, (response) => {
+          alert('popup.js >>> success');
         });
 
         // chrome.tabs.insertCSS(tabs[0].id, 
