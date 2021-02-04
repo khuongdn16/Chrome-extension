@@ -39,8 +39,10 @@ chrome.runtime.onMessage.addListener(
         });
       } else{ 
         // if word is empty, replace all images
-        // images.forEach(img => img.src = pikachuUrl);
-        images.forEach(img => img.src = pokemonUrl);
+        images.forEach((img, index) => {
+          let pokemonUrl = `https://pokeres.bastionbot.org/images/pokemon/${index}.png`;
+          img.src = pokemonUrl;
+        })
       }
     }
     return true;
