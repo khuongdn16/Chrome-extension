@@ -1,31 +1,52 @@
-// alert('content.js');
+console.log('content.js');
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    const pikachuUrl = 'https://giantbomb1.cbsistatic.com/uploads/square_medium/9/95666/1881642-pikachu_pokemon_kanto_new_official.png';
+    const pokemonId = getRandomInt(150);
+    console.log('content.js receive message >>> ', request);
 
     // console.log('Receive message from background');
-    if( request.message === "clicked_browser_action" ) {
+    if( request.message === "popup_button_clicked" ) {
       const images = document.querySelectorAll('img');
-      // console.log(images.length);
-      // images.forEach(img => img.parentElement.removeChild(img));
-      // images.forEach(img => img.src = pikachuUrl);
       
-      chrome.runtime.sendMessage({"message": "get-data"});
+      // Send message to background.js to fetch API data
+      chrome.runtime.sendMessage({
+        message: "get-data",
+        word : request.word,
+        pokemonId : pokemonId
+      });
 
     }
 
+    // listen for message from background.js with fetch data
     if( request.message === "got-data" ) {
-      console.log('Receiving search results >>> ', request);
-      const snakeWords = request.result;
+      // console.log('Receiving search results >>> ', request);
+      const pokemonUrl = request.pokemonUrl;
       const images = document.querySelectorAll('img');
-      console.log(images.length);
-      images.forEach(img => {
-        // console.log(img.alt.toString());
-        // console.log(img.alt.toString().includes('snake'));        
-        if (img.alt.toString().includes('snake')){
-          img.src = pikachuUrl;
-        }
-      });      
+      // const anchors = document.querySelectorAll('a');
+
+      // replace images with keyword
+      if (request.word !== ''){
+        images.forEach(img => {
+          if (img.alt.toString().toLowerCase().includes(request.word)){
+            console.log(img.alt);
+            // img.src = pokemonUrl;
+            const newImage = document.createElement('img');
+            newImage.src = pokemonUrl;
+            // let parent = img.parentNode;
+            img.parentNode.prepend(newImage); 
+            img.parentNode.removeChild(img);
+          }
+        });
+      } else{ 
+        // if word is empty, replace all images
+        // images.forEach(img => img.src = pikachuUrl);
+        images.forEach(img => img.src = pokemonUrl);
+      }
     }
+    return true;
   }
 );
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}

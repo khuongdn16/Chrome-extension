@@ -17,7 +17,8 @@
   ],
 
   "browser_action": {
-    "default_icon": "./images/download.png"
+    "default_icon": "./images/download.png",
+    "default_popup": "popup.html"
   },
   "permissions": [
     "activeTab",
